@@ -77,19 +77,30 @@ dingen() {
     return 1
   fi
 
-  # Store response and copy to clipboard
-  echo "$command" | tee ~/.dingen.sh-last | pbcopy
+  # Store response in a file
+  echo "$command" | tee ~/.dingen.sh-last >/dev/null
 
   # Display generated command with syntax highlighting (fallback to echo if bat isn't installed)
-  echo -e "ℹ️ generated and copied command:\n\n-------------"
+  echo "🕵️‍♀️ please review the generated command:"
+  echo ""
+  print_message 5 "\`\`\`bash"
   if command -v bat >/dev/null 2>&1; then
     echo "$command" | bat --language=bash --style=plain
   else
     echo "$command"
   fi
-  echo "-------------"
+  print_message 5 "\`\`\`"
   echo ""
 
+  # copy to clipboard if available
+  if command -v xclip >/dev/null 2>&1; then
+    echo "$command" | xclip -selection clipboard
+    info "📋 copied to clipboard."
+  elif command -v pbcopy >/dev/null 2>&1; then
+    echo "$command" | pbcopy
+    info "📋 command was copied to clipboard."
+  fi
+  
   # Confirm execution (quiet prompt)
   read -p "🤷‍♂️ execute? (y/N): " confirm
   if [[ "$confirm" =~ ^[Yy]$ ]]; then
