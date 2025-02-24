@@ -24,9 +24,28 @@ info() {
   print_message 2 "$1"
 }
 
+copy_to_clipboard() {
+  local content="$1"
+  if command -v xclip >/dev/null 2>&1; then
+    echo "$content" | xclip -selection clipboard
+    info "✂️ copied to clipboard."
+  elif command -v pbcopy >/dev/null 2>&1; then
+    echo "$content" | pbcopy
+    info "✂️ command was copied to clipboard."
+  else
+    warn "🦘 no clipboard utility found."
+  fi
+}
+
 dingen() {
   local maxTokens=100
   local usage="usage \`dingen.sh <system_prompt_file> [--max-tokens <number>] <user_prompt>\`"
+
+  # Check for required commands early
+  if ! command -v gh >/dev/null 2>&1; then
+    error "gh command not found. Please install the GitHub CLI."
+    exit 1
+  fi
 
   # Check if at least one argument (systemPromptFile) is provided
   if [[ $# -lt 1 ]]; then
@@ -93,13 +112,7 @@ dingen() {
   echo ""
 
   # copy to clipboard if available
-  if command -v xclip >/dev/null 2>&1; then
-    echo "$command" | xclip -selection clipboard
-    info "📋 copied to clipboard."
-  elif command -v pbcopy >/dev/null 2>&1; then
-    echo "$command" | pbcopy
-    info "📋 command was copied to clipboard."
-  fi
+  copy_to_clipboard "$command"
   
   # Confirm execution (quiet prompt)
   read -p "🤷‍♂️ execute? (y/N): " confirm
@@ -107,7 +120,7 @@ dingen() {
     echo -e "\n🚀 executing that dingens..."
     eval "$command" || error "command execution failed."
   else
-    info "🚮 command not executed."
+    echo "🚮 command not executed."
   fi
 }
 
