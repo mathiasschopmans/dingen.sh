@@ -76,6 +76,18 @@ To use the script, run the following command in your terminal:
 
 ## Installation
 
+### On the fly installation
+
+Given you have the required dependencies installed, you can "install" it on the fly by adding the following alias to your `.bashrc` or `.zshrc`:
+
+```bash
+alias dingen.sh='bash -c "$(curl -fsSL https://dingen.sh/script)"'
+```
+
+> **⚠️ Caution:** I would not recommend this for production use for performance and security reasons.
+
+### Static installation
+
 1. Clone the repository:
    ```
    git clone https://github.com/mathiasschopmans/dingen.sh.git
@@ -86,7 +98,7 @@ To use the script, run the following command in your terminal:
    ```
 3. Add an alias to your `.bashrc` or `.zshrc`:
    ```bash
-   alias dingens='bash ~/path/to/dingen.sh'
+   alias dingen.sh='bash ~/path/to/dingen.sh'
    ```
 4. Source your `.bashrc` or `.zshrc`:
    ```bash
@@ -96,9 +108,7 @@ To use the script, run the following command in your terminal:
    ```
 5. Install dependencies:
    ```bash
-   brew install gh
-   brew install bat
-   brew install jq
+   brew install bat gh jq
    ```
 6. Authenticate with GitHub:
    ```bash
@@ -108,16 +118,6 @@ To use the script, run the following command in your terminal:
    ```bash
    gh extension install gh/models
    ```
-
-### On the fly installation
-
-Alternatively, you can "install" it on the fly by adding the following alias to your `.bashrc` or `.zshrc`:
-
-```bash
-alias dingen.sh='bash -c "$(curl -fsSL https://dingen.sh/script)"'
-```
-
-> **⚠️ Caution:** I would not recommend this for production use for performance and security reasons.
 
 ## Contributing
 
