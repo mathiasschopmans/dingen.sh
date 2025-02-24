@@ -8,12 +8,15 @@ True to its name, `dingen.sh` has your back when you’re stuck trying to rememb
 
 Utilizing persisted system prompts and the power of LLMs through [`gh models`](https://github.com/github/gh-models), `dingen.sh` helps you generate and run commands with ease and build own _dingens_ by aliasing. ✨
 
-### It features:
+### Features
 
-- ✅ Local prompt persistence for custom workflows
-- ✅ Smart error handling to keep things smooth
-- ✅ Clipboard integration for easy copy-pasting
-- ✅ Command preview with syntax highlighting
+- Reads a system prompt from a specified file.
+- Accepts user prompts and optional parameters.
+- Validates input to ensure correct usage.
+- Interacts with an AI model to generate commands.
+- Copies generated commands to the clipboard for easy access.
+- Provides syntax highlighting for generated commands.
+- Confirms execution of commands before running them.
 
 Perfect for when you need to delegate the grunt work and focus on _real_ tasks—because even the terminal deserves an intern. 💼
 
@@ -35,15 +38,6 @@ Wayyy to long - let's create or own _"dingens"_ by adding an alias `alias werner
 
 🌎 [Translation](https://chatgpt.com/share/67bc15f5-1e88-8011-b0ed-b856aee5568d)
 
-## Features
-
-- Reads a system prompt from a specified file.
-- Accepts user prompts and optional parameters.
-- Validates input to ensure correct usage.
-- Interacts with an AI model to generate commands.
-- Copies generated commands to the clipboard for easy access.
-- Provides syntax highlighting for generated commands.
-- Confirms execution of commands before running them.
 
 ## Usage
 
