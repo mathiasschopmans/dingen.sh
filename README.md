@@ -75,7 +75,7 @@ To use the script, run the following command in your terminal:
 Given you have the required dependencies installed, you can "install" it on the fly by adding the following alias to your `.bashrc` or `.zshrc`:
 
 ```bash
-alias dingen.sh='bash -c "$(curl -fsSL https://dingen.sh/script)"'
+alias dingen.sh='function _dingens() { bash -c "$(curl -fsSL https://dingen.sh/script)" -- "$@"; }; _dingens'
 ```
 
 > **⚠️ Caution:** I would not recommend this for production use for performance and security reasons.
