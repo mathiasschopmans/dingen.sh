@@ -1,8 +1,10 @@
-# 📟 `dingen.sh` - The AI-Powered Command Line Sidekick
+![](./www/dingen.sh-banner.png)
 
-**"Dingens"** [[ˈdɪŋəns](https://de.wiktionary.org/wiki/Dingens)] — that handy German word from the Ruhr area for _"thingamajig"_ or _"whatchamacallit"_. You know, when you can’t quite remember the name of that... _dingens_.
+# 📟 [`dingen.sh`](https://dingen.sh) - The AI-Powered Command Line Sidekick
 
-And speaking of German words, [**"dingen"**](https://de.wiktionary.org/wiki/dingen) means _"to hire"_ or _"to delegate"_ — which is exactly what this tool does. It _hires_ your terminal as an AI-powered sidekick, ready to take on the commands you don’t want to figure out yourself.
+**"Dingens"** [[ˈdɪŋəns](https://de.wiktionary.org/wiki/Dingens)] — a handy German word from the Ruhr area for _"thingamajig"_ or _"whatchamacallit"_. You know, when you can’t quite remember the name of that... _dingens_.
+
+Speaking of German words, **"dingen"** [[ˈdɪŋən]](https://de.wiktionary.org/wiki/dingen) means _"to hire"_ or _"to delegate"_ — which is exactly what this tool does. It _hires_ your terminal as an AI-powered sidekick and delegates your request to a powerful LLM to generate the commands so you don’t need to figure out yourself.
 
 True to its name, `dingen.sh` has your back when you’re stuck trying to remember _that_ command. It’s a smart command-line wrapper that turns your half-baked ideas into fully-formed commands—no need to Google your way through obscure flags or syntaxes.
 
@@ -18,7 +20,7 @@ Utilizing persisted system prompts and the power of LLMs through [`gh models`](h
 - Provides syntax highlighting for generated commands.
 - Confirms execution of commands before running them.
 
-Perfect for when you need to delegate the grunt work and focus on _real_ tasks—because even the terminal deserves an intern. 💼
+Perfect for when you need to delegate the grunt work and focus on _real_ tasks.
 
 By letting you define your own system prompts like the [demo home-assistant prompt](./prompts/home-assistant), `dingen.sh` adapts to your workflow, generating precise shell commands tailored to your needs. With built-in error handling and clipboard integration, it streamlines automation—turning your terminal into a powerhouse of efficiency that is _superior to other consoles_. 🕹️📺
 
@@ -29,7 +31,12 @@ By letting you define your own system prompts like the [demo home-assistant prom
 + 💻 `dingen.sh ./prompts/home-assistant "stell Kühlschrank auf 6°"`
 ```
 
-Wayyy to long - let's create or own _"dingens"_ by adding an alias `alias werner='dingen.sh ./prompts/home-assistant'` in our `.bashrc` or `.zshrc` and try again:
+Wayyy to long - let's create or own _"dingens"_ by adding an alias in our `.bashrc` or `.zshrc`:
+```bash
+alias werner='dingen.sh ./prompts/home-assistant'
+``` 
+
+ and try again:
 
 ```diff
 - 💭 "Dingens, Werner, stell die Heizung hoch, is ja kälter als inne Zeche hier!"
@@ -115,7 +122,16 @@ alias dingen.sh='function _dingens() { bash -c "$(curl -fsSL https://dingen.sh/s
 
 ## Contributing
 
-Contributions are welcome. Please open an issue or submit a pull request for any enhancements or bug fixes.
+I'd love to see user-contributed prompts, aka. "dingens," as PRs. 
+If you have a useful prompt that you'd like to share, feel free to submit it, and let's make `dingen.sh` even more powerful together!
+
+## Roadmap and ideas :bulb:
+
+- [ ] Add tips and tricks for creating own dingens
+- [ ] Add more demo prompts like `docker`, `aws`, `ffmeg`
+- [ ] Add `dingens.sh for <name>` command to use existing prompts hosted on `https://dingen.sh/prompts`
+- [ ] Add `dingens.sh create "a thing to manage <tool>"` command to create new prompts with the help of LLMs (#inception)
+- [ ] Add `dingens.sh list` command to list all available community prompts
 
 ## The End
 
