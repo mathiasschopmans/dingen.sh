@@ -1,4 +1,4 @@
-![](./www/dingen.sh-banner.png)
+![](./www/img/banner.png)
 
 # 📟 [`dingen.sh`](https://dingen.sh) - The AI-Powered Command Line Sidekick
 
