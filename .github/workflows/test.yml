@@ -1,0 +1,27 @@
+name: Test dingen.sh core functionality
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gh jq bat
+
+      - name: Authenticate with GitHub
+        run: gh auth login --with-token < ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Run dingen.sh with test inputs
+        run: |
+          ./dingen.sh ./prompts/home-assistant "turn off lights in the living room"
