@@ -32,6 +32,7 @@ By letting you define your own system prompts like the [demo home-assistant prom
 ```
 
 Wayyy to long - let's create or own _"dingens"_ by adding an alias in our `.bashrc` or `.zshrc`:
+
 ```bash
 alias werner='dingen.sh ./prompts/home-assistant'
 ``` 
@@ -51,19 +52,23 @@ alias werner='dingen.sh ./prompts/home-assistant'
 To use the script, run the following command in your terminal:
 
 ```
-./dingens.sh <system_prompt_file> [--max-tokens <number>] <user_prompt>
+./dingens.sh <system_prompt_file> [--max-tokens <number>] [--trust] <user_prompt>
 ```
 
 ### Arguments
 
 - `<system_prompt_file>`: Path to the file containing the system prompt.
 - `--max-tokens <number>`: (Optional) Maximum number of tokens for the AI response. Default is 100.
+- `--trust`: (Optional) Runs the generated command directly without user feedback.
 - `<user_prompt>`: The prompt you want to send to the AI.
+
+> **⚠️ Caution:** The `--trust` parameter should be used with care and only after you have validated that your system-prompt returns good results.
 
 ### Example
 
 ```
-./dingens.sh ./prompts/home-assistant "turn off lights in the living room"
+./dingen.sh ./prompts/home-assistant "turn off lights in the living room"
+./dingen.sh ./prompts/home-assistant --trust "turn off lights in the living room"
 ```
 
 ## Dependencies
@@ -82,7 +87,7 @@ To use the script, run the following command in your terminal:
 Given you have the required dependencies installed, you can "install" it on the fly by adding the following alias to your `.bashrc` or `.zshrc`:
 
 ```bash
-alias dingen.sh='function _dingens() { bash -c "$(curl -fsSL https://dingen.sh/script)" -- "$@"; }; _dingens'
+alias dingen.sh='function _dingen() { bash -c "$(curl -fsSL https://dingen.sh/script)" -- "$@"; }; _dingen'
 ```
 
 > **⚠️ Caution:** I would not recommend this for production use for performance and security reasons.
@@ -129,9 +134,9 @@ If you have a useful prompt that you'd like to share, feel free to submit it, an
 
 - [ ] Add tips and tricks for creating own dingens
 - [ ] Add more demo prompts like `docker`, `aws`, `ffmeg`
-- [ ] Add `dingens.sh for <name>` command to use existing prompts hosted on `https://dingen.sh/prompts`
-- [ ] Add `dingens.sh create "a thing to manage <tool>"` command to create new prompts with the help of LLMs (#inception)
-- [ ] Add `dingens.sh list` command to list all available community prompts
+- [ ] Add `dingen.sh for <name>` command to use existing prompts hosted on `https://dingen.sh/prompts`
+- [ ] Add `dingen.sh create "a thing to manage <tool>"` command to create new prompts with the help of LLMs (#inception)
+- [ ] Add `dingen.sh list` command to list all available community prompts
 
 ## The End
 
