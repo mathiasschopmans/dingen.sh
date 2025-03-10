@@ -39,7 +39,8 @@ copy_to_clipboard() {
 
 dingen() {
   local maxTokens=100
-  local usage="usage \`dingen.sh <system_prompt_file> [--max-tokens <number>] <user_prompt>\`"
+  local trust=false
+  local usage="usage \`dingen.sh <system_prompt_file> [--max-tokens <number>] [--trust] <user_prompt>\`"
 
   # Check for required commands early
   if ! command -v gh >/dev/null 2>&1; then
@@ -76,6 +77,12 @@ dingen() {
     fi
   fi
 
+  # Parse optional --trust argument
+  if [[ $# -ge 1 && "$1" == "--trust" ]]; then
+    trust=true
+    shift
+  fi
+
   # Validate that at least one user prompt argument exists
   if [[ $# -lt 1 ]]; then
     error "missing user prompt."
@@ -100,7 +107,6 @@ dingen() {
   echo "$command" | tee ~/.dingen.sh-last >/dev/null
 
   # Display generated command with syntax highlighting (fallback to echo if bat isn't installed)
-  echo "🕵️‍♀️ please review the generated command:"
   echo ""
   print_message 5 "\`\`\`bash"
   if command -v bat >/dev/null 2>&1; then
@@ -111,16 +117,21 @@ dingen() {
   print_message 5 "\`\`\`"
   echo ""
 
-  # copy to clipboard if available
+  # Copy to clipboard if available
   copy_to_clipboard "$command"
   
   # Confirm execution (quiet prompt)
-  read -p "🤷‍♂️ execute? (y/N): " confirm
-  if [[ "$confirm" =~ ^[Yy]$ ]]; then
-    echo -e "\n🚀 executing that dingens..."
+  if [[ "$trust" == true ]]; then
+    echo "🚀 executing that dingens..."
     eval "$command" || error "command execution failed."
   else
-    echo "🚮 command not executed."
+    read -p "🕵️‍♀️ please review the generated command above and decide if you want to execute it (y/N): " confirm
+    if [[ "$confirm" =~ ^[Yy]$ ]]; then
+      echo -e "\n🚀 executing that dingens..."
+      eval "$command" || error "command execution failed."
+    else
+      echo "🚮 command not executed."
+    fi
   fi
 }
 
